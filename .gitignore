@@ -1,0 +1,158 @@
+# .NET Core
+bin/
+obj/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Auto-generated files
+*.vspscc
+*.vssscc
+.vscode/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# NCrunch
+_NCrunch_*
+.*crunch*
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Rider
+.idea/
+*.sln.iml
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# DotNetTool artifacts
+.dotnet_tools/
+
+# DotNetFiddle
+.env
+
+# Azure Function artifacts
+local.settings.json
+
+# Code Coverage Reports
+TestResults/
+Coverage/
+
+# MongoDB log
+*.log
+
+# Azure Resource Manager files
+*.azrm
+
+# VS Code directories
+.vscode/
+
+# Application Insights
+ApplicationInsights.config
+ApplicationInsights.xml
+
+# Resharper
+_ReSharper.Caches/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+# Uncomment if necessary; it’s not usually needed
+# !packages/build/
+# !packages/repositories.config
+
+# Microsoft Azure Build Output
+csx/
+*.build.csdef
+
+# Windows Azure Packaging
+.cspack.exe.manifest
+*.cspkg
+
+# Microsoft Azure Emulator
+ecf/
+rcf/
+
+# Windows Azure ApplicationInsights config
+ApplicationInsights.config
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Local History for JetBrains products
+.idea/
+
+# SQL Server files
+*.mdf
+*.ldf
+
+# MS SQL Data Projects
+*.dbmdl
+*.dbproj.schemaview
+*.pfx
+*.publish.xml
+
+# Microsoft Fakes
+FakesAssemblies/
+
+# GhostDoc config file
+*.GhostDoc.xml
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+
+# IDE config files
+*.idea
+*.suo
+*.vs
+*.vscode
+
+# Rider
+.idea/
+*.sln.iml
+
+# Config file
+appsettings.Development.json
+appsettings.Local.json
+
+# Local settings file
+local.settings.json
+
+# Log files
+*.log
+*.db
+*.db-shm
+*db-wal
+.env
