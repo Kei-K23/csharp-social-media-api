@@ -1,12 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace SocialMediaAPI.Models
+namespace SocialMediaAPI.Contracts.User
 {
-    public class User
+    public class UserRequest
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [StringLength(80, MinimumLength = 3)]
         [Required]
         public string? Username { get; set; }
@@ -24,8 +21,5 @@ namespace SocialMediaAPI.Models
 
         [StringLength(300, MinimumLength = 5)]
         public string? Bio { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
     }
 }
