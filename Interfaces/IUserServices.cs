@@ -1,4 +1,4 @@
-using SocialMediaAPI.Contracts.User;
+using SocialMediaAPI.Contracts;
 using SocialMediaAPI.Models;
 
 namespace SocialMediaAPI.Interfaces

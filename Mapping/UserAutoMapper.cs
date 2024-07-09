@@ -1,7 +1,7 @@
 using AutoMapper;
-using SocialMediaAPI.Contracts.User;
+using SocialMediaAPI.Contracts;
 
-namespace SocialMediaAPI.Mapping.User
+namespace SocialMediaAPI.Mapping
 {
     public class UserAutoMapper : Profile
     {
