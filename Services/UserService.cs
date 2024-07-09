@@ -47,7 +47,7 @@ namespace SocialMediaAPI.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<User>> GetAllUsersAsync()
+        public async Task<IEnumerable<User>?> GetAllUsersAsync()
         {
             try
             {
@@ -55,7 +55,7 @@ namespace SocialMediaAPI.Services
 
                 if (users == null)
                 {
-                    return [];
+                    return null;
                 }
 
                 return users;
