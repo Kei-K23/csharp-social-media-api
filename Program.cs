@@ -11,6 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<DBSettings>(builder.Configuration.GetSection("DBSettings"));
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddLogging();
+builder.Services.AddProblemDetails();
 
 // DB Context instance to be Singleton pattern
 builder.Services.AddSingleton<UserDbContext>();
