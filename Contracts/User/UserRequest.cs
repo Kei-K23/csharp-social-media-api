@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SocialMediaAPI.Contracts.User
 {
+    // This DTO will be use for both Create and Update Request
     public class UserRequest
     {
         [StringLength(80, MinimumLength = 3)]
