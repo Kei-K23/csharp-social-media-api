@@ -43,9 +43,14 @@ namespace SocialMediaAPI.Services
             }
         }
 
-        public Task DeleteUserAsync(Guid id)
+        public async Task DeleteUserAsync(Guid id)
         {
-            throw new NotImplementedException();
+            // Check if user exists or not
+            var user = await _userDbContext.Users.FindAsync(id) ?? throw new KeyNotFoundException($"User with id {id} not found");
+
+            // Delete the user from the database context if exists
+            _userDbContext.Users.Remove(user);
+            await _userDbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<UserResponse>> GetAllUsersAsync()
@@ -74,11 +79,10 @@ namespace SocialMediaAPI.Services
 
         public async Task<UserResponse> UpdateUserAsync(Guid id, UserRequest request)
         {
+            // Check if user exists or not
+            var user = await _userDbContext.Users.FindAsync(id) ?? throw new KeyNotFoundException($"User with id {id} not found");
             try
             {
-                // Check if user exists or not
-                var user = await _userDbContext.Users.FindAsync(id) ?? throw new KeyNotFoundException($"User with id {id} not found");
-
                 // If request have value, then update
                 if (request.Username != null)
                 {

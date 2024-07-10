@@ -98,5 +98,24 @@ namespace SocialMediaAPI.Controllers
             }
         }
 
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> DeleteUserAsync(Guid id)
+        {
+            try
+            {
+                await _userService.DeleteUserAsync(id);
+
+                return StatusCode(200, new { message = $"User with ID: {id} deleted successful" });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while deleting the  user", error = ex.Message });
+            }
+        }
+
     }
 }
