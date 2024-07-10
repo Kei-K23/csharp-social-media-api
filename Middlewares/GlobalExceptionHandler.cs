@@ -26,6 +26,7 @@ namespace SocialMediaAPI.Middlewares
                 StatusCode = exception switch
                 {
                     BadHttpRequestException => (int)HttpStatusCode.BadRequest,
+                    KeyNotFoundException => (int)HttpStatusCode.NotFound,
                     _ => (int)HttpStatusCode.InternalServerError,
                 }
             };

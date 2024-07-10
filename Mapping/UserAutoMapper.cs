@@ -11,6 +11,11 @@ namespace SocialMediaAPI.Mapping
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
             .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
+
+            CreateMap<UserResponse, Models.User>()
+            .ForMember(dest => dest.Password, opt => opt.Ignore());
+
+            CreateMap<Models.User, UserResponse>();
         }
     }
 }

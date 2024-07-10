@@ -5,10 +5,10 @@ namespace SocialMediaAPI.Interfaces
 {
     public interface IUserServices
     {
-        Task<IEnumerable<User>> GetAllUsersAsync();
-        Task<User> GetUserByIdAsync();
+        Task<IEnumerable<UserResponse>> GetAllUsersAsync();
+        Task<UserResponse> GetUserByIdAsync(Guid id);
         Task CreateUserAsync(UserRequest request);
-        Task UpateUserAsync(Guid id, UserRequest request);
-        Task DelteUserAsync(Guid id);
+        Task<UserResponse> UpdateUserAsync(Guid id, UserRequest request);
+        Task DeleteUserAsync(Guid id);
     }
 }

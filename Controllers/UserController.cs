@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SocialMediaAPI.Contracts;
 using SocialMediaAPI.Interfaces;
-using SocialMediaAPI.Models;
 
 namespace SocialMediaAPI.Controllers
 {
@@ -30,7 +29,7 @@ namespace SocialMediaAPI.Controllers
                 // Create and save user
                 await _userService.CreateUserAsync(request);
 
-                return StatusCode(202, new ApiResponse<User> { Message = "User created successful", });
+                return StatusCode(201, new { message = "User created successful", data = request });
             }
             catch (Exception ex)
             {
@@ -49,10 +48,30 @@ namespace SocialMediaAPI.Controllers
 
                 if (users == null || !users.Any())
                 {
-                    return StatusCode(200, new { message = "No user found" });
-
+                    return StatusCode(200, new { data = Array.Empty<object>() });
                 }
-                return StatusCode(200, new { message = "User created successful" });
+
+                return StatusCode(200, new { data = users });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while creating the  user", error = ex.Message });
+            }
+
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<IActionResult> GetUserByIdAsync(Guid id)
+        {
+            try
+            {
+                var user = await _userService.GetUserByIdAsync(id);
+
+                return StatusCode(200, new { data = user });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
             }
             catch (Exception ex)
             {
