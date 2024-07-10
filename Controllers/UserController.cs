@@ -30,7 +30,7 @@ namespace SocialMediaAPI.Controllers
                 // Create and save user
                 await _userService.CreateUserAsync(request);
 
-                return StatusCode(202, new ApiResponse { message = "User created successful" });
+                return StatusCode(202, new ApiResponse<User> { Message = "User created successful", });
             }
             catch (Exception ex)
             {

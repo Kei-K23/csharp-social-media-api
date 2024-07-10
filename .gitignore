@@ -150,6 +150,8 @@ appsettings.Local.json
 # Local settings file
 local.settings.json
 
+Migrations
+
 # Log files
 *.log
 *.db

@@ -33,6 +33,11 @@ namespace SocialMediaAPI.Services
                 // Map User request obj to User obj
                 var user = _mapper.Map<User>(request);
                 user.CreatedAt = DateTime.Now;
+
+                _logger.Log(LogLevel.Trace, "User", user);
+                // Add the user to the database context
+                await _userDbContext.Users.AddAsync(user);
+
                 await _userDbContext.SaveChangesAsync();
             }
             catch (Exception ex)
