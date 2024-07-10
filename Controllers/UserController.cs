@@ -77,7 +77,25 @@ namespace SocialMediaAPI.Controllers
             {
                 return StatusCode(500, new { message = "An error occurred while creating the  user", error = ex.Message });
             }
+        }
 
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> UpdateUserAsync(Guid id, UserRequest request)
+        {
+            try
+            {
+                var user = await _userService.UpdateUserAsync(id, request);
+
+                return StatusCode(200, new { data = user });
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while updating the  user", error = ex.Message });
+            }
         }
 
     }
