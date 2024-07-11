@@ -18,14 +18,15 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddLogging();
 builder.Services.AddProblemDetails();
 
-builder.Services.AddScoped<IUserServices, UserService>();
+// Add
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 
 {
     using var scope = app.Services.CreateScope();
     var context = scope.ServiceProvider.GetRequiredService<UserDbContext>();
-    // Perform any database initialization here if needed
 }
 
 if (app.Environment.IsDevelopment())

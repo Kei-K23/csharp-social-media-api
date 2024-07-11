@@ -16,7 +16,7 @@ namespace SocialMediaAPI.Models
         [EmailAddress]
         public string? Email { get; set; }
 
-        [StringLength(20, MinimumLength = 8)]
+        [StringLength(255, MinimumLength = 8)]
         [Required]
         public string? Password { get; set; }
 

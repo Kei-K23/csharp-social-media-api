@@ -8,34 +8,11 @@ namespace SocialMediaAPI.Controllers
     [Route("api/v1/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IUserServices _userService;
+        private readonly IUserService _userService;
 
-        public UserController(IUserServices userServices)
+        public UserController(IUserService userServices)
         {
             _userService = userServices;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateUserAsync(UserRequest request)
-        {
-            // Check request body if valid
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            try
-            {
-                // Create and save user
-                await _userService.CreateUserAsync(request);
-
-                return StatusCode(201, new { message = "User created successful", data = request });
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = "An error occurred while creating the  user", error = ex.Message });
-            }
-
         }
 
         [HttpGet]
@@ -57,7 +34,6 @@ namespace SocialMediaAPI.Controllers
             {
                 return StatusCode(500, new { message = "An error occurred while creating the  user", error = ex.Message });
             }
-
         }
 
         [HttpGet("{id:guid}")]

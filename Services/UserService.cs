@@ -3,11 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using SocialMediaAPI.AppDataContext;
 using SocialMediaAPI.Contracts;
 using SocialMediaAPI.Interfaces;
-using SocialMediaAPI.Models;
 
 namespace SocialMediaAPI.Services
 {
-    public class UserService : IUserServices
+    public class UserService : IUserService
     {
         private readonly ILogger<UserService> _logger;
         private readonly UserDbContext _userDbContext;
@@ -22,25 +21,6 @@ namespace SocialMediaAPI.Services
             _logger = logger;
             _mapper = userAutoMapper;
             _userDbContext = userDbContext;
-        }
-
-        public async Task CreateUserAsync(UserRequest request)
-        {
-            try
-            {
-                // Map User request obj to User obj
-                var user = _mapper.Map<User>(request);
-                user.CreatedAt = DateTime.Now;
-
-                // Add the user to the database context
-                await _userDbContext.Users.AddAsync(user);
-                await _userDbContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "An error occur when creating user");
-                throw new Exception("An error occur when creating");
-            }
         }
 
         public async Task DeleteUserAsync(Guid id)
