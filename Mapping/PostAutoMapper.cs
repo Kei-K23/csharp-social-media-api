@@ -7,7 +7,7 @@ namespace SocialMediaAPI.Mapping
     {
         public PostAutoMapper()
         {
-            CreateMap<PostRequest, Models.User>()
+            CreateMap<PostRequest, Models.Post>()
             .ForMember(dest => dest.Id, opt => opt.Ignore())
             .ForMember(dest => dest.CreatedAt, opt => opt.Ignore())
             .ForMember(dest => dest.UpdatedAt, opt => opt.Ignore());
