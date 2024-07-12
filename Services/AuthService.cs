@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
@@ -48,8 +49,15 @@ namespace SocialMediaAPI.Services
             // Generate JWT token
             var jwtKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(jwtKey, SecurityAlgorithms.HmacSha256);
+            // Create claims
+            var claims = new[]{
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim("username", user.Username),
+                new Claim("userId",  user.Id.ToString()),
+            };
 
-            var secToken = new JwtSecurityToken(_config["Jwt:Issuer"],
+            var secToken = new JwtSecurityToken(
+                _config["Jwt:Issuer"],
                 _config["Jwt:Issuer"],
                 null,
                 expires: DateTime.Now.AddMinutes(120),

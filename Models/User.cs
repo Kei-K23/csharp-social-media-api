@@ -27,5 +27,8 @@ namespace SocialMediaAPI.Models
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        // Navigation property
+        public ICollection<Post> Posts { get; set; }
+
     }
 }
