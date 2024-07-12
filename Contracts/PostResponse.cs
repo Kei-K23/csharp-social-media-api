@@ -2,7 +2,7 @@ using SocialMediaAPI.Models;
 
 namespace SocialMediaAPI.Contracts
 {
-    public class PostCreateRequest
+    public class PostResponse
     {
 
         public Guid Id { get; set; }
