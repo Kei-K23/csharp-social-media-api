@@ -35,7 +35,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.Configure<DBSettings>(builder.Configuration.GetSection("DBSettings"));
-builder.Services.AddSingleton<UserDbContext>();
+builder.Services.AddSingleton<AppDbContext>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddLogging();
 builder.Services.AddProblemDetails();
@@ -43,12 +43,13 @@ builder.Services.AddProblemDetails();
 // Add Dependency Injection services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IPostService, PostService>();
 
 var app = builder.Build();
 
 {
     using var scope = app.Services.CreateScope();
-    var context = scope.ServiceProvider.GetRequiredService<UserDbContext>();
+    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 }
 
 if (app.Environment.IsDevelopment())

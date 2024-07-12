@@ -9,17 +9,17 @@ namespace SocialMediaAPI.Services
     public class PostService : IPostService
     {
         private readonly ILogger<PostService> _logger;
-        private readonly PostDbContext _postDbContext;
+        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
         public PostService(
             ILogger<PostService> logger,
-            PostDbContext postDbContext,
+            AppDbContext context,
             IMapper mapper
         )
         {
             _logger = logger;
-            _postDbContext = postDbContext;
+            _context = context;
             _mapper = mapper;
         }
 
@@ -30,15 +30,14 @@ namespace SocialMediaAPI.Services
                 var post = _mapper.Map<Post>(request);
                 post.CreatedAt = DateTime.Now;
 
-                await _postDbContext.AddAsync(post);
-                await _postDbContext.SaveChangesAsync();
+                await _context.AddAsync(post);
+                await _context.SaveChangesAsync();
 
                 var postResponse = _mapper.Map<PostResponse>(post);
                 return postResponse;
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
-
                 _logger.LogError(ex, "An error occur when creating new post");
                 throw new Exception("An error occur when creating new post");
             }

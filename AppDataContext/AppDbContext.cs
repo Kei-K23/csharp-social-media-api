@@ -4,17 +4,18 @@ using SocialMediaAPI.Models;
 
 namespace SocialMediaAPI.AppDataContext
 {
-    public class UserDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         private readonly DBSettings _dbSettings;
 
-        public UserDbContext(IOptions<DBSettings> dbSettings)
+        public AppDbContext(IOptions<DBSettings> dbSettings)
         {
             _dbSettings = dbSettings.Value;
         }
 
         // DB set property to represent user table
         public DbSet<User> Users { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -36,6 +37,10 @@ namespace SocialMediaAPI.AppDataContext
             modelBuilder.Entity<User>()
                 .HasIndex(u => u.Email)
                 .IsUnique();
+
+            modelBuilder.Entity<Post>()
+                .ToTable("tb_posts")
+                .HasKey(p => p.Id);
         }
     }
 }

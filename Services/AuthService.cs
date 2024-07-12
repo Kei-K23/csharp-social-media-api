@@ -15,27 +15,27 @@ namespace SocialMediaAPI.Services
     {
 
         private readonly ILogger<AuthService> _logger;
-        private readonly UserDbContext _userDbContext;
+        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
 
         public AuthService(
             ILogger<AuthService> logger,
-            UserDbContext userDbContext,
+            AppDbContext context,
             IMapper userAutoMapper,
             IConfiguration config
         )
         {
             _logger = logger;
             _mapper = userAutoMapper;
-            _userDbContext = userDbContext;
+            _context = context;
             _config = config;
         }
 
         public async Task<string> UserLoginAsync(UserLoginRequest request)
         {
             // Get user by email and if not found throw not found exception
-            var user = await _userDbContext.Users.FirstOrDefaultAsync(u => u.Email == request.Email) ?? throw new UnauthorizedAccessException("User credentials are wrong!");
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email) ?? throw new UnauthorizedAccessException("User credentials are wrong!");
 
             // Verify password
             bool isAuthenticate = BCrypt.Net.BCrypt.EnhancedVerify(request.Password, user.Password);
@@ -80,8 +80,8 @@ namespace SocialMediaAPI.Services
                 user.CreatedAt = DateTime.Now;
 
                 // Add the user to the database context
-                await _userDbContext.Users.AddAsync(user);
-                await _userDbContext.SaveChangesAsync();
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
 
                 // Map the saved User entity to UserResponse obj
                 var userResponse = _mapper.Map<UserResponse>(user);
